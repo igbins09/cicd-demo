@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Update deployment.yaml with Docker username
-        run: sed -i 's/YOUR_DOCKER_USERNAME/${{ secrets.DOCKER_USERNAME }}/g' deployment.yaml
+        run: sed -i 's/DOCKER_USERNAME/${{ secrets.DOCKER_USERNAME }}/g' deployment.yaml
       - name: Deploy to Kubernetes
         run: |
           minikube kubectl -- apply -f deployment.yaml
