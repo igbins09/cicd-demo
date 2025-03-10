@@ -12,7 +12,8 @@ A simple end-to-end DevOps pipeline showcasing CI/CD, containerization, Kubernet
 1. Clone the repo: `git clone <repo-url>`
 2. Run locally: `npm install && node index.js`
 3. Build Docker image: `docker build -t myapp .`
-4. Deploy to Kubernetes: `kubectl apply -f deployment.yaml`
+4. Update `deployment.yaml` with your Docker Hub username: `sed -i 's/DOCKER_USERNAME/<your-username>/g' deployment.yaml`
+5. Deploy to Kubernetes: `kubectl apply -f deployment.yaml`
 
 ## Skills Demonstrated
 - CI/CD automation
