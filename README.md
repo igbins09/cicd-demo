@@ -1,2 +1,21 @@
-# devops-portfolio-project
-DevOps portfolio project that showcases a basic NodeJs web app
+# DevOps Portfolio Project
+A simple end-to-end DevOps pipeline showcasing CI/CD, containerization, Kubernetes deployment, and monitoring.
+
+## Tools Used
+- Git & GitHub
+- GitHub Actions (CI/CD)
+- Docker
+- Kubernetes (Minikube)
+- Prometheus & Grafana
+
+## Setup Instructions
+1. Clone the repo: `git clone <repo-url>`
+2. Run locally: `npm install && node index.js`
+3. Build Docker image: `docker build -t myapp .`
+4. Deploy to Kubernetes: `kubectl apply -f deployment.yaml`
+
+## Skills Demonstrated
+- CI/CD automation
+- Containerization
+- Kubernetes orchestration
+- Monitoring setup
