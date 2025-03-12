@@ -1,4 +1,4 @@
-# DevOps Project
+# DevOps CICD Project
 A simple end-to-end DevOps pipeline showcasing CI/CD, containerization, Kubernetes deployment, and monitoring.
 
 ## Tools Used
