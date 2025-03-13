@@ -11,5 +11,9 @@
   "description": "",
   "dependencies": {
     "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "jest": "^29.x.x",
+    "supertest": "^7.x.x"
   }
 }
