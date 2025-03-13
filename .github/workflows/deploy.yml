@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - minor-fix
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -29,20 +30,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Update deployment.yaml with Docker username
-        run: sed -i 's/DOCKER_USERNAME/${{ secrets.DOCKER_USERNAME }}/g' deployment.yaml
+      
       # - name: Deploy to Kubernetes (Minikube)
       #   run: minikube kubectl -- apply -f deployment.yaml
       - name: Set up Kind
-        run: |
-          curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.20.0/kind-linux-amd64
-          chmod +x ./kind
-          ./kind create cluster
+        uses: helm/kind-action@v1.8.0
+        with:
+          cluster_name: kind-cluster
+
+      - name: Update deployment.yaml with Docker username
+        run: sed -i 's/DOCKER_USERNAME/${{ secrets.DOCKER_USERNAME }}/g' deployment.yaml
+          
       - name: Deploy to Kind
         run: kubectl apply -f deployment.yaml
+        
       - name: Verify deployment
         run: |
-          kubectl wait --for=condition=ready pod -l app=myapp --timeout=60s
+          kubectl rollout status deployment/myapp --timeout=60s
           kubectl port-forward svc/myapp-service 3000:3000 &
           sleep 5
           curl -f http://localhost:3000 || exit 1
